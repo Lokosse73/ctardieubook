@@ -1,0 +1,60 @@
+.typewriter {
+    font-family: monospace;
+    font-size: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/* Style du curseur clignotant */
+#text::after {
+    content: "|";
+    animation: cursor-blink 0.7s infinite;
+    font-size: 15px;
+    color: white;
+}
+html{
+    background: #2d2d2d;
+}
+::-webkit-scrollbar{
+    width: 0;
+}
+#form{
+    position: absolute;
+    top: 0;
+    left: 100%;
+    transform: translate(-100%, 0);
+    background-color: #3f3e3e;
+    height: 100%;
+}
+#form label{
+    color: #FFCF00;
+    font-size: 14px;
+    font-family: monospace;
+}
+#form input, #form textarea, #form select{
+    background-color: #3f3e3e;
+    border: none;
+    border-bottom: 1px solid white;
+    color: #A288E3;
+    font-family: monospace;
+    font-size: 12px;
+}
+
+
+@keyframes cursor-blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+@media screen and (max-width: 768px){
+    #form{
+        position: initial;
+        transform: translate(0, 0);
+        width: 100%;
+        height: auto;
+    }
+}

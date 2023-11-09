@@ -1,0 +1,100 @@
+.CardPushToRight{
+    margin-left: auto;
+}
+.card{
+    width: 300px;
+    height: 450px;
+    background-color: var(--basecolor);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    overflow: hidden;
+    position: relative;
+    margin-left: 20px;
+    margin-right: 20px;
+    transform: scale(1);
+    transition: 0.5s;
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card iframe{
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    position: absolute;
+    transition: transform 0.5s;
+
+    overflow: hidden;
+}
+.card a{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    z-index: 2;
+    overflow: hidden;
+}
+.card-panel{
+    clip-path: polygon(100% 350px, 200px 100%, 100% 100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    transition: clip-path 0.5s;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.8);
+}
+.card-info{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    color: var(--textcolor);
+    z-index: 2;
+    transition: transform 0.5s;
+    padding: 100px 20px 20px;
+    overflow: hidden;
+}
+.card:hover .card-panel{
+    clip-path: polygon(100% -200px, -350px 100%, 100% 100%);
+}
+
+.card-title{
+    font-size: 1.5rem;
+}
+.card-description{
+    font-size: 1.5rem;
+    margin-top: 0;
+}
+.card-button{
+    font-size: 1.5rem;
+    color: var(--firstcolor);
+    text-decoration-line: underline;
+    position: absolute;
+    top: 300px;
+}
+.card-info hr{
+    margin: 10px 0 ;
+    border: none;
+    border-bottom: 1px solid var(--textcolor);
+}
+@media screen and (max-width: 768px){
+    .card{
+        margin: auto;
+        margin-top: 50px;
+    }
+    .RéalisationsCards{
+        margin-left: 0;
+    }
+    .LaboratoireCards{
+        margin-left: 0;
+    }
+}

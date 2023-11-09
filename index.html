@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clément TARDIEU - Développeur web et web mobile full stack</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="Développeur web et web mobile full stack" />
+    <meta name="author" content="Clément TARDIEU" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta http-equiv="content-language" content="FR" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="scripts/css/style.css" rel="stylesheet" />
+    <link href="scripts/css/lato.css" rel="stylesheet" />
+    <link href="scripts/css/card.css" rel="stylesheet" />
+    <link rel="icon" href="resources/images/PhotoMoi.png">
+    <script src="scripts/js/script.js" rel="stylesheet"></script>
+
+    <meta name="google-site-verification" content="ndfLM5nWGIFs0utN4UB5kgxAX_aKybuwj6AN_1s2-_U" />
+</head>
+
+<body>
+    <nav id="nav">
+        <div class="nav-mobile-first">
+            <a id="openBtn">
+        <span class="burger-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+            </a>
+        </div>
+        <div class="nav-link-panel" id="nav-panel" style="user-select: none">
+            <a href="#Réalisations" class="nav-link pointer">Réalisations</a>
+            <a href="#Compétences" class="nav-link pointer">Compétences</a>
+            <a href="#Formation" class="nav-link pointer">Formation</a>
+            <a href="#Contact" class="nav-link pointer">Contact</a>
+        </div>
+        <script>
+            const sidenav = document.getElementById("nav-panel");
+            const openBtn = document.getElementById("openBtn");
+            const nav = document.getElementById("nav");
+            let pos = "close";
+
+            openBtn.onclick = openCloseNav;
+
+            const links = document.getElementsByClassName("nav-link");
+            for(let i = 0; i < links.length; i++){
+                links[i].onclick = closeNav;
+            }
+
+            /* Set the width of the side navigation to 300px */
+            function openCloseNav() {
+                if(pos === "close"){
+                    sidenav.classList.add("sidShow");
+                    nav.classList.remove("close");
+                    nav.classList.add("open");
+                    pos = "open";
+                }else{
+                    nav.classList.remove("open");
+                    nav.classList.add("close");
+                    pos = "close";
+                }
+            }
+            function closeNav() {
+                nav.classList.remove("open");
+                nav.classList.add("close");
+                pos = "close";
+            }
+        </script>
+        <div style="display: flex; margin-top: 10px; margin-left: 10px">
+            <a href="#header" class="pointer"><img src="resources/images/PhotoMoi.png" class="headerImgSmall"></a>
+            <a href="#header" class="pointer" style="text-decoration: none"><h1 class="headerTitleSmall">Clément TARDIEU</h1></a>
+        </div>
+    </nav>
+
+
+    <header id="header" class="flex">
+        <div>
+            <h1 class="headerTitle">Clément TARDIEU</h1>
+            <img src="resources/images/PhotoMoi.png" class="headerImg">
+        </div>
+        <div style="padding-right: 50px">
+            <h2>Développeur web et web mobile full stack</h2>
+            <hr>
+            <p style="font-size: calc(16px + 0.2vw);">Natif d'Aix-les-Bains, je suis passionné par l'informatique et les jeux vidéo.<br>
+                Mon parcours scolaire et professionnel m'a permis d'acquérir une solide expertise dans le travail d'équipe et la complexiter de le programmation.<br>
+                <br>
+                Je pourrais mettre à profit mes compétences, ma créativité et ma détermination pour m'épanouir et contribuer au succès de mon équipe et de l'entreprise qui m'accueillera.<br><br>
+            <a href="#Contact" class="pointer">Contactez-moi</a>
+        </div>
+
+    </header>
+
+    <div style="position: relative; width: 100%; height: 100%;"><iframe src="Laboratory/WritingCode/WritingCode.html" class="CodebackgroundIframe" style="z-index: -100"></iframe></div>
+
+    <div class="CodeBackgroundGlass"></div>
+    <section id="Réalisations"  class="CodeBackground">
+        <div>
+            <div>
+                <h2>Réalisations</h2>
+                <hr>
+                <div class="flex">
+                    <div class="CardPushToRight"></div>
+                    <div class="card">
+                        <a></a>
+                        <iframe src="https://magart.go.yj.fr/"></iframe>
+                        <div class="card-panel">
+                            <div class="card-info">
+                                <h3 class="card-title">Mag'Art</h3>
+                                <hr>
+                                <p class="card-description">eBook de l'artiste MaGa.</p>
+                                <p class="card-button">Vister</p>
+                                <a href="https://magart.go.yj.fr/" target="_blank" class="pointer" style="z-index: 4"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <a></a>
+                        <iframe src="https://www.ad-libitum.fr/"></iframe>
+                        <div class="card-panel">
+                            <div class="card-info">
+                                <h3 class="card-title">Ad Libitum</h3>
+                                <hr>
+                                <p class="card-description">Ensemble de musiciens professionnels.</p>
+                                <p class="card-button">Vister</p>
+                                <a href="https://www.ad-libitum.fr/" target="_blank" class="pointer" style="z-index: 4"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+            <div>
+                <h2>Laboratoire</h2>
+                <hr>
+                <div class="flex">
+                    <div class="CardPushToRight"></div>
+                    <div class="card">
+                        <a></a>
+                        <iframe src="Laboratory/WritingCode/WritingCode.html"></iframe>
+                        <div class="card-panel">
+                            <div class="card-info">
+                                <h3 class="card-title">Script Typing</h3>
+                                <hr>
+                                <p class="card-description">Créé spécifiquement pour le fond de ce site, il écrit et efface un texte à une vitesse donnée.</p>
+                                <p class="card-button">Vister</p>
+                                <a href="Laboratory/WritingCode/WritingCode.html" target="_blank" class="pointer" style="z-index: 4"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <a></a>
+                        <iframe src="Laboratory/FruitGame/FruitGame.html"></iframe>
+                        <div class="card-panel">
+                            <div class="card-info">
+                                <h3 class="card-title">Fruit game</h3>
+                                <hr>
+                                <p class="card-description">Jeu de tri entre des tomates et des carottes. <br>< pour les tomates<br>> pour les carottes</p>
+                                <p class="card-button">Vister</p>
+                                <a href="Laboratory/FruitGame/FruitGame.html" target="_blank" class="pointer" style="z-index: 4"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <div class="CodeBackgroundGlass"></div>
+    <section  id="Compétences" style="background-color: var(--basecolor); ">
+        <div>
+            <h2>Compétences</h2>
+            <hr>
+            <div class="flex">
+                <div>
+                    <ul style="font-size: calc(16px + 0.1vw);">
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>JavaScript</li>
+                        <li>PHP</li>
+                        <li>SQL</li>
+                        <li>C#</li>
+                        <li>SCSS</li>
+                        <li>ReactJS</li>
+                        <li>jQuery</li>
+                        <li>NodeJS</li>
+                        <li>VueJS</li>
+                        <li>Bootstrap</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="CodeBackgroundGlass"></div>
+    <section id="Formation" class="CodeBackground">
+        <div class="flex">
+            <div>
+                <h2>Formation</h2>
+                <hr>
+                <p style="font-size: calc(16px + 0.1vw);">Passionné de création de jeux vidéo depuis l'enfance j'ai pu aborder la programmation avec
+                    <a href="https://www.rpgmakerweb.com/" class="pointer" target="_blank" >RPG Maker</a>
+                    permettant de créer son propre jeu pokemon vers l'âge de 12 ans,<br>
+                    à 15 ans j'ai vu les choses en plus grand avec <a href="https://www.unrealengine.com/fr" class="pointer" target="_blank" >Unreal Engine 4</a>
+                    qui permet de coder en blueprint.<br>
+                    Puis quelques années plus tard j'ai pu tester <a href="https://unity.com/fr" class="pointer" target="_blank" >Unity</a>
+                    ce qui m'a initié au C# mon premier langage de programmation,<br>
+                    quelque temps après mes études, j'ai découvert le développement web qui m'a amené à faire une formation à l'école
+                    <a href="https://www.studi.com/fr" class="pointer" target="_blank" >Studi</a> de un an avec à la clef le diplôme de développeur web et web mobile full stack.</p>
+            </div>
+        </div>
+    </section>
+    <div class="CodeBackgroundGlass"></div>
+    <footer id="Contact">
+        <h2>Contact</h2>
+        <hr>
+        <div class="flex">
+            <div>
+                <h3>Téléphone</h3>
+                <a href="tel:0683705813" class="pointer">06 83 70 58 13</a>
+            </div>
+            <hr class="hrvertical">
+            <div>
+                <h3>Email</h3>
+                <a href="mailto:tardieu.clement@orange.fr" class="pointer">tardieu.clement@orange.fr</a>
+            </div>
+        </div>
+        <br>
+        <div class="flex" style="float: bottom">
+            <p style="margin-bottom: 0">© 2023 Clément Tardieu</p>
+        </div>
+    </footer>
+</body>
+</html>

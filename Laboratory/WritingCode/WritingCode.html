@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="description" content="Développeur web et web mobile full stack" />
+    <meta name="author" content="Clément TARDIEU" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta http-equiv="content-language" content="FR" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="icon" href="/resources/images/PhotoMoi.png">
+
+    <link rel="stylesheet" href="styles.css">
+    <title>WritingCode</title>
+
+
+    <link rel="stylesheet" href="prism.css">
+</head>
+<body>
+<div id="form">
+    <label for="code">Code :<textarea name="code" id="code" cols="50" rows="50"><?php
+$dir = "../../client/Galerie/";
+
+if (empty($_GET['file'])) {
+    $files = array_diff(scandir($dir), ['.', '..']);
+    ?>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr);">
+        <?php foreach ($files as $file) {
+            $images = glob($dir . $file . '/*.{jpg,png}', GLOB_BRACE);
+            if (empty($images[0])) {
+                continue;
+            }
+            $firstImage = $images[0];
+            ?>
+            <form method="get" action="#">
+                <h2 class="title"><?php echo htmlspecialchars($file); ?></h2>
+                <input type="hidden" name="file" value="<?php echo htmlspecialchars($file); ?>">
+                <br>
+                <button type="submit"><img style="max-width: 500px" src="<?php echo $firstImage; ?>"></button>
+            </form>
+        <?php } ?>
+    </div>
+<?php } else {
+    $file = htmlspecialchars($_GET['file']);
+    $rep = $dir . $file . '/';
+    if (file_exists($rep)) {
+        $reps = array_diff(scandir($rep), ['.', '..']);
+        ?>
+        <h2 class="title"><?php echo $file; ?></h2>
+        <div class="galerie-grid">
+            <?php foreach ($reps as $image) {
+                echo "<img src='$rep$image' alt='$image' />";
+            } ?>
+        </div>
+    <?php } else {
+        header("Location: /../../scripts/php/GalerieImage.php");
+        exit();
+    }
+}
+?></textarea></label>
+    <label for="language">Language</label><select id="language" style="width: 100%">
+        <option value="php">PHP</option>
+        <option value="html">HTML</option>
+        <option value="css">CSS</option>
+        <option value="javascript">JavaScript</option>
+    </select>
+    <br>
+    <label for="numberSpeed">Writing speed (in ms)<br>
+        <input type="number" name="numberSpeed" id="numberSpeed" value="20" min="0" style="width: 100%">
+    </label>
+    <br>
+    <br>
+    <input type="button" value="Run" style="width: 100%; cursor: pointer">
+</div>
+
+<div class="typewriter">
+    <pre><code id="text" class="language-php"></code></pre>
+</div>
+<script>
+    if (window.top!==window.self)
+    {
+        const form = document.getElementById("form");
+        form.style.display = "none";
+
+    }
+</script>
+<script src="prism.js"></script>
+<script type="module">
+
+    //speed
+    let speed = 20; // Vitesse d'écriture (en millisecondes)
+    let speedInput = document.getElementById("numberSpeed"); // Vitesse d'écriture (en millisecondes)
+    speedInput.addEventListener('input', (event) => {
+        const newSpeed = event.target.value;
+        console.log(newSpeed);
+        speed = newSpeed;
+    });
+
+    //language
+    let language = document.getElementById("language");
+    language.addEventListener('change', (event) => {
+        let language = event.target.value;
+        let textElement = document.getElementById("text");
+        textElement.classList.remove("language-html", "language-css", "language-javascript", "language-php");
+        textElement.classList.add("language-" + language);
+        Prism.highlightAll();
+    });
+
+    //run
+    let retryButton = document.getElementById("form").getElementsByTagName("input")[1];
+    retryButton.addEventListener('click', () => {
+        document.getElementById("text").innerHTML = "";
+        i = 0;
+        typeWriter();
+    });
+
+    //typewriter
+    let timeoutId; // Variable pour stocker l'ID du timeout
+    let i = 0;
+    let textarea = document.getElementById("code");
+    let textElement = document.getElementById("text");
+
+    function typeWriter() {
+        clearTimeout(timeoutId); // Annuler le timeout précédent
+
+        const text = textarea.value;
+        if (i < text.length) {
+            if (text.charAt(i) === '\\') {
+                // Échapper le caractère `\` pour qu'il ne soit pas interprété comme une séquence d'échappement
+                textElement.innerHTML += text.charAt(i + 1);
+                i += 2;
+            } else {
+                textElement.innerHTML += text.charAt(i);
+                i++;
+            }
+            Prism.highlightAll();
+            timeoutId = setTimeout(typeWriter, speed); // Ajouter un nouveau timeout
+
+        }else {
+            // Fin de l'écriture, effacer l'écriture lettre par lettre depuis le bas après un délai de 3 secondes
+            const characterElements = Array.from(textElement.childNodes);
+            let reverseIndex = characterElements.length - 1;
+
+            setTimeout(function reverseDelete() {
+                if (reverseIndex >= 0) {
+                    textElement.removeChild(characterElements[reverseIndex]);
+                    reverseIndex--;
+                    timeoutId = setTimeout(reverseDelete, 50);
+                } else {
+                    setTimeout(restartTypewriter, 3000);
+                }
+            }, 3000);
+        }
+    }
+
+    function restartTypewriter() {
+        i = 0;
+        textElement.innerHTML = ""; // Réinitialiser le contenu de l'élément texte
+        typeWriter(); // Démarrer le processus d'écriture
+    }
+
+    //start
+    document.addEventListener('DOMContentLoaded', function() {
+        textarea = document.getElementById("code");
+        textElement = document.getElementById("text");
+        typeWriter();
+    });
+</script>
+</body>
+</html>
